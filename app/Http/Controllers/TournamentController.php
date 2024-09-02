@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Team;
+use Session;
 
 class TournamentController extends Controller
 {
     public function showTeams()
     {
         try{
-            session_unset();
+            Session::flush();
             return view('step-1');
         } catch (Exception $e) {
             return redirect()->back()->with('ExceptionError', $e->getMessage());
